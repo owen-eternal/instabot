@@ -48,7 +48,6 @@ class InstaBot():
     def find_user(self, user_account):
         driver = self.driver
         self.user_account = user_account
-
         driver.get(f'{self.base_url}/{self.user_account}')
 
     def filter_algo(self, num_of_pics):
@@ -105,9 +104,8 @@ class InstaBot():
     
 if __name__ == "__main__":
 
-    BOT_EMAIL = os.environ.get('BOT_EMAIL')
-    print(BOT_EMAIL)
-    BOT_PASSWORD = os.environ.get('DB_PASSWORD')
+    BOT_EMAIL = os.environ.get('EMAIL')
+    BOT_PASSWORD = os.environ.get('PASSWORD')
 
     USER = 'Kolumbusbeats'
     LIKES_PP = 3 #number of picures liked
