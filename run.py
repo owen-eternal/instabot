@@ -1,15 +1,25 @@
 from bot.login_bot import LoginBot
 from bot.engagement_bot import EngagementBot
-from bot.config import Credentials, Settings
+from bot.config import Credentials, Configurations
 
-#configure
-username = Credentials.BOT_EMAIL
-password = Credentials.BOT_PASSWORD
-user = Settings.USER
-likes_pp = Settings.LIKES_PP
+#credentials
+crededentials = Credentials.ig_accounts
 
-#engagement bot in action
-bot = EngagementBot(username, password)
-bot.login()
-bot.find_user(user)
-bot.like(likes_pp)
+#bot configurations
+handles = Configurations.IG_HANDLE
+likes_pp = Configurations.LIKES_PP
+comments_pp =Configurations.COMMENTS_PP
+comment_list = Configurations.COMM_LIST
+
+#instatiate a list of bot accounts 
+bots = [EngagementBot(cred['username'], cred['password'] ) for cred in crededentials]
+
+#iterate through the list of accounts
+for bot in range(len(bots)):
+    bots[bot].login()
+    for handle in handles:
+        bots[bot].find_user(handle)
+        bots[bot].like(likes_pp)
+    bots[bot].quit_driver()
+
+#git push -u owen-eternal master
